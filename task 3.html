@@ -1,0 +1,16 @@
+<body style="background-color: black;"></body>
+
+<script>
+let lastVisit=localStorage.getItem("lastVisit");
+const d = new Date();
+
+if( !lastVisit ) {
+let person = prompt("Добро пожаловать! Назовите, пожалуйста, ваше имя", "Гжегож Бженчишчикевич");
+localStorage.setItem("person", person);
+localStorage.setItem("lastVisit", ((d.getDate())+([" января "," февраля "," марта "," апреля "," мая "," июня "," июля "," августа "," сентября "," октября "," ноября "," декабря "][d.getMonth()])+(d.getFullYear())+" года в "+d.getHours()+":"+d.getMinutes()));
+} else {
+let person=localStorage.getItem("person");
+alert("Добрый день, "+person+"! Давно не виделись. В последний раз вы были у нас "+lastVisit+".");
+localStorage.setItem("lastVisit", ((d.getDate())+([" января "," февраля "," марта "," апреля "," мая "," июня "," июля "," августа "," сентября "," октября "," ноября "," декабря "][d.getMonth()])+(d.getFullYear())+" года в "+d.getHours()+":"+d.getMinutes()));
+}
+</script>

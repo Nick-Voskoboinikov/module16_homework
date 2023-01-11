@@ -1,0 +1,76 @@
+<html lang="ru">
+<head>
+<script>
+/* Этап 1. Подготовка данных */
+
+// Создание экземпляра класса DOMParser. Он позволит нам парсить XML
+const parser = new DOMParser();
+// console.log('parser', parser);
+
+// XML, который мы будем парсить
+const xmlString = `
+<list>
+  <student>
+    <name lang="en">
+      <first>Ivan</first>
+      <second>Ivanov</second>
+    </name>
+    <age>35</age>
+    <prof>teacher</prof>
+  </student>
+  <student>
+    <name lang="ru">
+      <first>Петр</first>
+      <second>Петров</second>
+    </name>
+    <age>58</age>
+    <prof>driver</prof>
+  </student>
+</list>
+`;
+// console.log('xmlString', xmlString);
+
+/* Этап 2. Получение данных */
+
+// Парсинг XML
+const xmlDOM = parser.parseFromString(xmlString, "text/xml");
+
+// Получение всех DOM-нод
+const listNode = xmlDOM.querySelector("list");
+const studentNodes = listNode.querySelectorAll("student");
+// console.log('listNode', listNode);
+// console.log('studentNodes', studentNodes);
+// console.log('typeof studentNodes', typeof studentNodes);
+
+let resultingList=[];
+for (student of studentNodes) {
+let nameNode = student.querySelector("name");
+// console.log('nameNode', nameNode);
+
+let firstNode = nameNode.querySelector("first");
+// console.log('firstNode', firstNode);
+let secondNode = nameNode.querySelector("second");
+// console.log('secondNode', secondNode);
+let ageNode = student.querySelector("age");
+// console.log('ageNode', ageNode);
+let profNode = student.querySelector("prof");
+// console.log('profNode', profNode);
+
+// Получение данных из атрибутов
+let langAttr = nameNode.getAttribute('lang');
+// console.log('langAttr', langAttr);
+
+let newStudent={name: firstNode.textContent + ' ' + secondNode.textContent, age: Number(ageNode.textContent), prof: profNode.textContent, lang: langAttr}
+resultingList.push(newStudent);
+}
+
+/* Этап 3. Запись данных в результирующий объект */
+const result = {
+  list: resultingList
+}
+
+console.log(JSON.stringify(result));
+console.log(result);
+
+</script></head>
+<body style="background-color: black;"></body></html>

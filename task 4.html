@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head dir="ltr">
+<meta charset="UTF-8">
+<title>Задание 4</title>
+</head>
+<body>
+<h1>Задание 4</h1>
+
+<p>
+  Вывод данных осуществляется в консоль
+</p>
+
+<script>
+/*
+Создать Promise, в котором c задержкой в три секунды сгенерировать случайное целое число от 1 до 100. Для создания задержки использовать setTimeout. Если сгенерированное число четное — Promise выполнится успешно (resolve), если нечетное — выполнится с ошибкой (reject). После разрешения Promise обработать результат его выполнения и вывести сообщение в консоль:
+
+«Завершено успешно. Сгенерированное число — number», если Promise завершился успешно. Вместо number подставить сгенерированное число
+«Завершено с ошибкой. Сгенерированное число — number», если Promise завершился с ошибкой. Вместо number подставить сгенерированное число
+*/
+
+
+function createPromise() {
+  const myPromise = new Promise((resolve, reject) => {                             // Создать promise
+    setTimeout(() => {                                                             // Для создания задержки использовать setTimeout
+      let generatedNumber = Math.round((Math.random()*100));                       // сгенерировать случайное целое число от 1 до 100
+      if(generatedNumber % 2 == 0) {                                               // Если сгенерированное число четное — Promise выполнится успешно (resolve)
+        resolve(`Завершено успешно. Сгенерированное число — ${generatedNumber}`);  // Вместо number подставить сгенерированное число
+      } else {                                                                     // если нечетное — выполнится с ошибкой (reject)
+        reject(`Завершено с ошибкой. Сгенерированное число — ${generatedNumber}`);
+      }
+    }, 3000);                                                                      // c задержкой в три секунды
+  });
+
+
+
+  myPromise
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+//    .finally(() => {
+//      console.log('После разрешения Promise обработать результат его выполнения');
+//    });
+  
+};
+
+createPromise();
+</script>
+</body></html>
