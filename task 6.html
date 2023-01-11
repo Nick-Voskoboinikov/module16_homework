@@ -62,8 +62,10 @@ for(let i = 0; i < imgObj.length; i++) {
 
 /* Если пользователь перезагрузил страницу, то ему должны показываться картинки из последнего успешно выполненного запроса (использовать localStorage). */
 function recallLastSession(result) {
-let lastsessionImages=localStorage.getItem("lastsessionImages");
-if( !lastsessionImages ) drawOmgImg(result, lastsessionImages);
+let lastsessionImages=JSON.parse(localStorage.getItem("lastsessionImages"));
+console.log(typeof lastsessionImages);
+console.log(lastsessionImages,lastsessionImages);
+if( !lastsessionImages ) if( lastsessionImages != null ) drawOmgImg(result, lastsessionImages);
 }
     const btn = document.querySelector('input[type="button"]');
     const result = document.querySelector('#result');
@@ -93,7 +95,7 @@ if( !lastsessionImages ) drawOmgImg(result, lastsessionImages);
             const requestResult = await fetchRequest(pageValue,limitValue);
             if (requestResult.length != 0) {
                 drawOmgImg(result, requestResult);
-                localStorage.setItem("lastsessionImages", requestResult);
+                localStorage.setItem("lastsessionImages", JSON.stringify(requestResult) );
             }
         }
     });
