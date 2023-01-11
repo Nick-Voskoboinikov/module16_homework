@@ -1,4 +1,15 @@
-<body style="background-color: black;"></body>
+<!DOCTYPE html>
+<html lang="ru">
+<head dir="ltr">
+<meta charset="UTF-8">
+<title>Задание 3</title>
+</head>
+<body>
+<h1>Задание 3</h1>
+
+<p>
+  Взаимодействие с пользователем осуществляется через prompt / alert
+</p>
 
 <script>
 let lastVisit=localStorage.getItem("lastVisit");
@@ -13,4 +24,6 @@ let person=localStorage.getItem("person");
 alert("Добрый день, "+person+"! Давно не виделись. В последний раз вы были у нас "+lastVisit+".");
 localStorage.setItem("lastVisit", ((d.getDate())+([" января "," февраля "," марта "," апреля "," мая "," июня "," июля "," августа "," сентября "," октября "," ноября "," декабря "][d.getMonth()])+(d.getFullYear())+" года в "+d.getHours()+":"+d.getMinutes()));
 }
+
 </script>
+</body></html>
